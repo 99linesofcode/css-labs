@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flexible definition list</title>
+    <link href="../main.css" rel="stylesheet" />
+    <style type="text/css"></style>
+    <style>
+      .container {
+        display: flex;
+        justify-content: center;
+      }
+
+      /**
+       * Definition list that displays inline on larger viewports but turns into
+       * two column layout where the definitions and terms are vertically aligned.
+       */
+      .dl-horizontal {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        margin-left: -30px;
+      }
+
+      .dl-horizontal__group {
+        display: flex;
+        flex: 1 1 50%;
+      }
+
+      .dl-horizontal__group dd {
+        flex: 1 0 auto;
+        margin-left: 0;
+        padding-left: 30px;
+      }
+
+      .dl-horizontal__group dt {
+        flex: 0 0 auto;
+        padding-left: 8px;
+      }
+
+      @media (min-width: 768px) {
+        .dl-horizontal__group {
+          flex: 0 1 auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <dl class="dl-horizontal">
+        <div class="dl-horizontal__group">
+          <dd>Kilocalorieën</dd>
+          <dt>2205</dt>
+        </div>
+        <div class="dl-horizontal__group">
+          <dd>Koolhydraten</dd>
+          <dt>276g</dt>
+        </div>
+        <div class="dl-horizontal__group">
+          <dd>Eiwitten</dd>
+          <dt>122g</dt>
+        </div>
+        <div class="dl-horizontal__group">
+          <dd>Vetten</dd>
+          <dt>68g</dt>
+        </div>
+      </dl>
+    </div>
+  </body>
+</html>
