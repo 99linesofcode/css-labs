@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SVG shapes and attributes</title>
+    <link href="../main.css" rel="stylesheet" />
+    <style type="text/css"></style>
+    <style></style>
+  </head>
+  <body>
+    <svg
+      width="500"
+      height="500"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        x="10"
+        y="10"
+        width="30"
+        height="30"
+        stroke="black"
+        fill="transparent"
+        fill-opacity=".8"
+        stroke-width="2"
+        stroke-opacity=".8"
+        stroke-linecap="round"
+        stroke-linejoin="bevel"
+        stroke-dasharray="none"
+      />
+      <rect
+        x="60"
+        y="10"
+        rx="10"
+        ry="10"
+        width="30"
+        height="30"
+        stroke="black"
+        fill="transparent"
+        fill-opacity=".8"
+        stroke-width="2"
+        stroke-opacity=".8"
+        stroke-linecap="round"
+        stroke-linejoin="bevel"
+        stroke-dasharray="none"
+      />
+
+      <circle
+        cx="25"
+        cy="75"
+        r="15"
+        stroke="red"
+        fill="transparent"
+        fill-opacity=".8"
+        stroke-width="2"
+        stroke-opacity=".8"
+        stroke-linecap="round"
+        stroke-linejoin="bevel"
+        stroke-dasharray="none"
+      />
+      <ellipse
+        cx="75"
+        cy="75"
+        rx="10"
+        ry="15"
+        stroke="red"
+        fill="transparent"
+        fill-opacity=".8"
+        stroke-width="2"
+        stroke-opacity=".8"
+        stroke-linecap="round"
+        stroke-linejoin="bevel"
+        stroke-dasharray="none"
+      />
+
+      <line
+        x1="10"
+        x2="40"
+        y1="110"
+        y2="110"
+        stroke="yellow"
+        stroke-width="2"
+        stroke-opacity=".8"
+        stroke-linecap="round"
+        stroke-linejoin="bevel"
+        stroke-dasharray="none"
+      />
+
+      <polyline
+        points="60, 105, 70, 115, 80, 105, 90, 115"
+        fill="transparent"
+        fill-opacity=".8"
+        stroke="goldenrod"
+        stroke-width="2"
+        stroke-opacity=".8"
+        stroke-linecap="round"
+        stroke-linejoin="bevel"
+        stroke-dasharray="none"
+      />
+
+      <!-- H and V are shorthands for L x y along the horizontal or vertical axis respectively. -->
+      <path d="M 10 130 H 92 V 160 H 10 L 10 130" />
+
+      <!-- Shortened d (draw) attribute with Z (close path)  -->
+      <path
+        d="M 12 180 H 89 V 210 H 12 Z"
+        fill="transparent"
+        fill-opacity=".8"
+        stroke="peachpuff"
+        stroke-width="2"
+        stroke-opacity=".8"
+        stroke-linecap="round"
+        stroke-linejoin="bevel"
+        stroke-dasharray="none"
+      />
+
+      <!-- Relative paths with lowercase letters  -->
+      <path
+        d="M 10 230 h 82 v 20 h -82 Z"
+        fill="honeydew"
+        stroke="black"
+        stroke-width="2"
+        stroke-opacity=".8"
+        stroke-linecap="round"
+        stroke-linejoin="bevel"
+        stroke-dasharray="none"
+      />
+
+      <!-- Cubic Bézier curve -->
+      <path
+        d="M 110 10 C 130, 90, 170, -40, 192 40"
+        stroke="black"
+        fill="transparent"
+        fill-opacity=".8"
+        stroke-width="2"
+        stroke-opacity=".8"
+        stroke-linecap="round"
+        stroke-linejoin="bevel"
+        stroke-dasharray="none"
+      />
+
+      <!--
+        Cubic Bézier stringed together
+        Several Bézier curves can be stringed together to create extended, smooth shapes. Often, the control point on one side of a point will be a reflection of the control point used on the other side to keep the slope constant. In this case, a shortcut version of the cubic Bézier can be used, designated by the command S (or s).
+        S produces the same type of curve as earlier—but if it follows another S command or a C command, the first control point is assumed to be a reflection of the one used previously. If the S command doesn't follow another S or C command, then the current position of the cursor is used as the first control point. In this case the result is the same as what the Q command would have produced with the same parameters.
+      -->
+      <path
+        d="M 100 90 C 125 60, 135 60, 150 90 S 175 120, 200 90"
+        stroke="black"
+        fill="transparent"
+        fill-opacity=".8"
+        stroke-width="2"
+        stroke-opacity=".8"
+        stroke-linecap="round"
+        stroke-linejoin="bevel"
+        stroke-dasharray="none"
+      />
+
+      <!-- Indicator lines and dots -->
+      <line x1="100" y1="90" x2="125" y2="60" stroke="red" />
+      <circle cx="125" cy="60" r="2" fill="red" />
+      <line x1="135" y1="60" x2="150" y2="90" stroke="red" />
+      <circle cx="135" cy="60" r="2" fill="red" />
+      <line x1="150" y1="90" x2="165" y2="120" stroke="blue" />
+      <circle cx="150" cy="90" r="2" fill="fuchsia" />
+      <circle cx="165" cy="120" r="2" fill="blue" />
+      <circle cx="175" cy="120" r="2" fill="blue" />
+      <line x1="175" y1="120" x2="200" y2="90" stroke="blue" />
+      <circle cx="200" cy="90" r="2" fill="blue" />
+
+      <!-- Quadratic Bézier curve -->
+      <path
+        d="M 100 132 Q 150 160 200 132"
+        stroke="black"
+        fill="transparent"
+        fill-opacity=".8"
+        stroke-width="2"
+        stroke-opacity=".8"
+        stroke-linecap="round"
+        stroke-linejoin="bevel"
+        stroke-dasharray="none"
+      />
+
+      <!-- Indicator lines and dots -->
+      <polyline
+        points="100 132, 150 160, 200 132"
+        fill="transparent"
+        fill-opacity=".8"
+        stroke="red"
+      />
+      <circle cx="100" cy="132" r="2" fill="red" />
+      <circle cx="150" cy="160" r="2" fill="red" />
+      <circle cx="200" cy="132" r="2" fill="red" />
+
+      <!-- Quadratic Bézier curve stringed together  -->
+      <path
+        d="M 100 200 Q 125 225, 150 200 T 200 200"
+        stroke="black"
+        fill="transparent"
+        fill-opacity=".8"
+        stroke-width="2"
+        stroke-opacity=".8"
+        stroke-linecap="round"
+        stroke-linejoin="bevel"
+        stroke-dasharray="none"
+      />
+
+      <!-- Indicator lines and dots -->
+      <polyline
+        points="100 200, 125 225, 150 200"
+        fill="transparent"
+        fill-opacity=".8"
+        stroke="red"
+      />
+      <circle cx="100" cy="200" r="2" fill="red" />
+      <circle cx="125" cy="225" r="2" fill="red" />
+      <polyline
+        points="150 200, 175 175, 200 200"
+        fill="transparent"
+        fill-opacity=".8"
+        stroke="blue"
+      />
+      <circle cx="150" cy="200" r="2" fill="fuchsia" />
+      <circle cx="175" cy="175" r="2" fill="blue" />
+      <circle cx="200" cy="200" r="2" fill="blue" />
+
+      <!-- Arcs -->
+      <path
+        d="M 225 10 L 325 110 A 50 50 0 0 0 275 60"
+        stroke="black"
+        fill="honeydew"
+        stroke-width="2"
+        stroke-opacity=".8"
+        stroke-linecap="round"
+        stroke-linejoin="bevel"
+        stroke-dasharray="none"
+        fill-opacity="0.5"
+      />
+      <path
+        d="M 225 10 L 325 110 A 50 50 0 1 1 275 60"
+        stroke="black"
+        fill="honeydew"
+        stroke-width="2"
+        stroke-opacity=".8"
+        stroke-linecap="round"
+        stroke-linejoin="bevel"
+        stroke-dasharray="none"
+        fill-opacity="0.5"
+      />
+
+      <!-- Indicator lines and dots -->
+      <circle cx="225" cy="10" r="2" fill="red" />
+      <circle cx="275" cy="60" r="2" fill="fuchsia" />
+      <circle cx="325" cy="110" r="2" fill="blue" />
+    </svg>
+  </body>
+</html>
