@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1 class="mb-2 font-bold">Vue 3 - Render function v-slot binding</h1>
+      <slot-props :the-prop="modelData">
+        <template v-slot="slotProps">{{ slotProps.theProp }}</template>
+      </slot-props>
+    </div>
+    <script>
+      const { createApp, h, resolveComponent, ref } = Vue;
+
+      const app = createApp({
+        setup() {
+          const modelData = ref(
+            "This is bound to the parent and accessible from the default slot's slotProps."
+          );
+
+          return { modelData };
+        },
+      });
+
+      app.component("slotProps", {
+        props: {
+          theProp: String,
+        },
+        setup(props, { slots }) {
+          return () => slots.default(props);
+        },
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>
