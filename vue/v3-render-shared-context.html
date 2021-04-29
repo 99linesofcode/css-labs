@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1 class="font-bold mb-2">Vue 3 - Render function and shared state</h1>
+      <shared-state-parent />
+    </div>
+    <script>
+      const { createApp, h, resolveComponent, ref, computed, onMounted } = Vue;
+
+      const app = createApp({});
+
+      const state = ref({
+        activeIndex: 0,
+        stepData: [],
+      });
+
+      function useContext() {
+        // mutations
+        const registerPage = (stepData) => {
+          state.value.stepData.push(stepData);
+          console.log(state.value.stepData.length);
+        };
+
+        // getters
+        const currentIndex = computed(() => state.value.activeIndex);
+        const numberOfPages = computed(() => state.value.stepData.length);
+
+        return {
+          currentIndex,
+          numberOfPages,
+          registerPage,
+        };
+      }
+
+      app.component("sharedStateChild", {
+        name: "sharedStateChild",
+        setup() {
+          onMounted(() => {
+            const sharedState = useContext();
+
+            sharedState.registerPage({
+              name: "leChild",
+              step: 1,
+            });
+          });
+
+          return () => h("p", ["le child"]);
+        },
+      });
+
+      app.component("sharedStateParent", {
+        name: "sharedStatedParent",
+        setup() {
+          const sharedState = useContext();
+
+          return () => [
+            h("span", [
+              "Step " +
+                sharedState.currentIndex.value +
+                " of " +
+                sharedState.numberOfPages.value,
+            ]),
+            h(resolveComponent("sharedStateChild")),
+          ];
+        },
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>
