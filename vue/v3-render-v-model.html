@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1 class="mb-2 font-bold">Vue 3 - Render function v-model binding</h1>
+      <model-parent v-model="modelData" />
+    </div>
+    <script>
+      const { createApp, h, resolveComponent, ref } = Vue;
+
+      const app = createApp({
+        setup() {
+          const modelData = ref("change this..");
+
+          return { modelData };
+        },
+      });
+
+      app.component("modelChild", {
+        name: "modelChild",
+        props: {
+          modelValue: String,
+        },
+        render() {
+          return [
+            h("p", ["transparent child"]),
+            h("input", {
+              value: this.$props.modelValue,
+              onInput: (e) => this.$emit("update:modelValue", e.target.value),
+            }),
+          ];
+        },
+      });
+
+      app.component("modelParent", {
+        name: "modelParent",
+        props: {
+          modelValue: String,
+        },
+        render() {
+          return [
+            h("p", ["parent"]),
+            h("small", ["modelValue: " + this.$props.modelValue]),
+            h(resolveComponent("modelChild"), {
+              modelValue: this.$props.modelValue,
+              "onUpdate:modelValue": (value) =>
+                this.$emit("update:modelValue", value),
+            }),
+          ];
+        },
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>
